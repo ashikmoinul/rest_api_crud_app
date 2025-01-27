@@ -14,10 +14,13 @@ class CrudApp extends StatelessWidget {
       theme: ThemeData(
         inputDecorationTheme: const InputDecorationTheme(
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.lightGreen),
-          ),
+              borderSide: BorderSide(color: Colors.lightGreen)),
           focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.lightGreenAccent)),
+          errorBorder:
+              OutlineInputBorder(borderSide: BorderSide(color: Colors.red)),
+          focusedErrorBorder:
+              OutlineInputBorder(borderSide: BorderSide(color: Colors.red)),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
