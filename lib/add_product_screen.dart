@@ -30,16 +30,24 @@ class _AddProductScreenState extends State<AddProductScreen> {
               children: [
                 TextFormField(
                   controller: _nameTEController,
+                  keyboardType: TextInputType.text,
                   decoration: const InputDecoration(
                     hintText: ('Name'),
                     labelText: ('Name'),
                   ),
+                  validator: (String?value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return 'Write your product name';
+                    }
+                    return null;
+                  }
                 ),
                 const SizedBox(
                   height: 8,
                 ),
                 TextFormField(
                   controller: _unitPriceTEController,
+                  keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
                     hintText: ('Unit Price'),
                     labelText: ('Unit Price'),
@@ -50,6 +58,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 ),
                 TextFormField(
                   controller: _quantityTEController,
+                  keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
                     hintText: ('Quantity'),
                     labelText: ('Quantity'),
@@ -60,6 +69,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 ),
                 TextFormField(
                   controller: _totalPriceTEController,
+                  keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
                     hintText: ('Total Price'),
                     labelText: ('Total Price'),
