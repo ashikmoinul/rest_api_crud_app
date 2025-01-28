@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rest_api_crud_app/add_product_screen.dart';
+import 'package:rest_api_crud_app/update_product_screen.dart';
 
 class ProductListScreen extends StatefulWidget {
   const ProductListScreen({super.key});
@@ -61,15 +62,51 @@ class _ProductListScreenState extends State<ProductListScreen> {
       trailing: Wrap(
         children: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const UpdateProductScreen(),
+                ),
+              );
+            },
             icon: const Icon(Icons.edit),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              _showDeleteConfirmationDialog();
+            },
             icon: const Icon(Icons.delete_forever_outlined),
           ),
         ],
       ),
+    );
+  }
+
+  void _showDeleteConfirmationDialog() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text("Delete"),
+          content:
+              const Text("Are you sure that you want to delete this product?"),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Confirm'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('No'),
+            ),
+          ],
+        );
+      },
     );
   }
 }
