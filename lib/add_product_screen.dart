@@ -130,6 +130,14 @@ class _AddProductScreenState extends State<AddProductScreen> {
       ),
     );
   }
+
+  void _addProduct() {
+    const String addNewProductUrl = 'http://35.73.30.144:2008/api/v1/CreateProduct/';
+
+  }
+
+
+
   @override
   void dispose() async{
     _nameTEController.dispose();
