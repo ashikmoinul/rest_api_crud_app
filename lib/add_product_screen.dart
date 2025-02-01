@@ -1,4 +1,8 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 
 class AddProductScreen extends StatefulWidget {
   const AddProductScreen({super.key});
@@ -29,7 +33,6 @@ class _AddProductScreenState extends State<AddProductScreen> {
           padding: const EdgeInsets.all(16.0),
           child: Form(
             key: _formKey,
-
             child: Column(
               children: [
                 TextFormField(
@@ -116,7 +119,9 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 const SizedBox(height: 8),
                 ElevatedButton(
                   onPressed: () {
-                    if (_formKey.currentState!.validate()) {}
+                    if (_formKey.currentState!.validate()) {
+                      _addProduct();
+                    }
                   },
                   child: const Text(
                     'Add',
@@ -131,15 +136,52 @@ class _AddProductScreenState extends State<AddProductScreen> {
     );
   }
 
-  void _addProduct() {
-    const String addNewProductUrl = 'http://35.73.30.144:2008/api/v1/CreateProduct/';
+  // Future<void> _addProduct() async {
+  //   const String addNewProductUrl =
+  //       'http://35.73.30.144:2008/api/v1/CreateProduct';
+  //
+  //   Map<String, dynamic> inputData = {
+  //     "ProductName": "ef",
+  //     "ProductCode": 256,
+  //     "Img": "dwq",
+  //     "Qty": 45,
+  //     "UnitPrice": 14,
+  //     "TotalPrice": 888
+  //   };
+  //   // Post Request
+  //   Uri uri = Uri.parse(addNewProductUrl);
+  //   Response response = await post(uri,
+  //       body: jsonEncode(inputData),
+  //       headers: {'content-type': 'application/json'});
+  //   print(response.statusCode);
+  //   print(response.body);
+  //   print(response.headers);
+  // }
 
+  Future<void> _addProduct() async {
+    const String addNewProductUrl =
+        'http://35.73.30.144:2008/api/v1/CreateProduct';
+
+    Map<String, dynamic> inputData = {
+      "ProductName": "ef",
+      "ProductCode": 256,
+      "Img": "dwq",
+      "Qty": 45,
+      "UnitPrice": 14,
+      "TotalPrice": 888,
+    };
+
+    Uri uri = Uri.parse(addNewProductUrl);
+    Response response = await post(uri,
+        body: jsonEncode(inputData),
+        headers: {'content-type': 'application/json'});
+    print(response.statusCode);
+    print(response.body);
+    print(response.headers);
   }
 
-
-
   @override
-  void dispose() async{
+  void dispose() async {
     _nameTEController.dispose();
     _unitPriceTEController.dispose();
     _quantityTEController.dispose();
